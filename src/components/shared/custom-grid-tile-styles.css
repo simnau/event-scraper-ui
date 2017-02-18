@@ -1,0 +1,64 @@
+.root {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  animation: height 5s ease;
+}
+
+.children {
+  height: auto;
+  transform: translateY(-50%);
+  position: relative;
+  left: 0px;
+  width: 100%;
+  top: 50%;
+}
+
+.root:hover .mask {
+  height: auto;
+}
+
+.root:hover .title {
+  overflow: visible;
+  white-space: normal;
+}
+
+.mask {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 68px;
+  min-height: 68px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.titleBar {
+  flex-grow: 1;
+  margin-left: 16px;
+  margin-right: 0px;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+}
+
+.title {
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.actionIcon {
+  order: 1;
+}
