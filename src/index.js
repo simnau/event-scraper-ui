@@ -9,7 +9,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import routes from './routes';
 import configureStore from './store/configureStore';
-// import { checkToken } from './components/login/actions';
+import { checkToken } from './components/login/login_actions';
 import en from './localization/messages-en';
 import './styles/styles.scss';
 
@@ -21,7 +21,7 @@ const store = configureStore();
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(hashHistory, store);
 
-// store.dispatch(checkToken()); // Check if user is already logged in.
+store.dispatch(checkToken()); // Check if user is already logged in.
 store.dispatch(loadTranslations({ ...en }));
 store.dispatch(setLocale('en'));
 

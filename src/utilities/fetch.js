@@ -8,7 +8,7 @@ import environment from '../environment/environment';
 
 function getAuthentication() {
   const userObj = JSON.parse(localStorage.getItem(TOKEN));
-  return userObj ? userObj.id_token : '';
+  return userObj ? userObj.token : '';
 }
 
 function checkStatus(response) {
@@ -27,7 +27,7 @@ export function enhancedFetch(url, options = {}) {
   extendedOptions.headers = {
     ...extendedOptions.headers,
     Accept: '*/*',
-    Authorization: `Bearer ${getAuthentication()}`
+    Authorization: getAuthentication()
   };
   if (typeof options.body === 'object') {
     extendedOptions.body = JSON.stringify(options.body);

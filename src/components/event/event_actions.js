@@ -3,6 +3,10 @@ import {
   post,
 } from '../../utilities/fetch';
 import {
+  UNAUTHORIZED_STATUS,
+  NOT_FOUND_STATUS,
+} from '../../constants/constants';
+import {
   SET_EVENT_EVENT,
   SET_MY_RATING_EVENT,
   SET_AVERAGE_RATING_EVENT,
@@ -11,6 +15,20 @@ import {
   FETCH_SUCCESS_EVENT,
   FETCH_FAILURE_EVENT,
 } from './action_types';
+import {
+  UNAUTHORIZED,
+} from '../shared/action_types';
+
+function handleError(dispatch, error) {
+  if (error.status === UNAUTHORIZED_STATUS) {
+    dispatch({ type: UNAUTHORIZED });
+  }
+  dispatch({
+    type: FETCH_FAILURE_EVENT,
+    payload: error,
+  });
+  return Promise.reject(error);
+}
 
 function setEvent(event) {
   return {
@@ -41,15 +59,43 @@ export function fetchInitialData(eventId) {
     dispatch({
       type: FETCH_INIT_EVENT,
     });
-    Promise.all([
+    return Promise.all([
       get(`api/event/${eventId}`),
       get(`api/event/rating/${eventId}`)
     ])
       .then(([event, { averageRating, voteCount }]) => {
         dispatch(setEvent(event));
         dispatch(setAverageRating(averageRating, voteCount));
+        dispatch({
+          type: FETCH_SUCCESS_EVENT,
+        });
       })
-      .catch(() => ({ type: FETCH_FAILURE_EVENT }));
+      .catch(error => handleError(dispatch, error));
+  };
+}
+
+export function fetchMyRating(eventId) {
+  return (dispatch) => {
+    dispatch({
+      type: FETCH_INIT_EVENT,
+    });
+    return get(`api/event/my-rating/${eventId}`)
+      .then((response) => {
+        dispatch(setMyRating(response.rating));
+        dispatch({
+          type: FETCH_SUCCESS_EVENT,
+        });
+      })
+      .catch((error) => {
+        if (error.status === NOT_FOUND_STATUS) {
+          dispatch({
+            type: FETCH_SUCCESS_EVENT,
+          });
+          return Promise.resolve();
+        }
+
+        return handleError(dispatch, error);
+      });
   };
 }
 
@@ -66,7 +112,7 @@ export function rateEvent(id, rating) {
           type: FETCH_SUCCESS_EVENT,
         });
       })
-      .catch(() => ({ type: FETCH_FAILURE_EVENT }));
+      .catch(error => handleError(dispatch, error));
   };
 }
 

@@ -4,10 +4,19 @@ import { Grid } from 'react-flexbox-grid';
 
 import Navigation from './layout/Navigation';
 
-const App = ({ children, location }) => {
+const App = ({
+  children,
+  location,
+  isAuthenticated,
+  logout,
+}) => {
   return (
     <Grid>
-      <Navigation location={location} />
+      <Navigation
+        location={location}
+        isAuthenticated={isAuthenticated}
+        onLogout={logout}
+      />
       <div>
         {children}
       </div>

@@ -17,8 +17,13 @@ class EventContainer extends Component {
   }
 
   componentWillMount() {
-    const { params: { eventId } } = this.props;
-    this.props.fetchInitialData(eventId);
+    const { fetchInitialData, fetchMyRating, isAuthenticated, params: { eventId } } = this.props;
+    fetchInitialData(eventId)
+      .then(() => {
+        if (isAuthenticated) {
+          fetchMyRating(eventId);
+        }
+      });
   }
 
   componentWillUnmount() {
@@ -41,6 +46,7 @@ function mapStateToProps(state) {
     averageRating: state.event.averageRating,
     myRating: state.event.myRating,
     voteCount: state.event.voteCount,
+    isAuthenticated: state.authentication.isAuthenticated,
   };
 }
 
