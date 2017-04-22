@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { loadTranslations, setLocale, syncTranslationWithStore } from 'react-redux-i18n';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { blue700, blue500 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Login from './components/login/LoginContainer';
@@ -30,9 +32,16 @@ store.dispatch(setLocale('en'));
 
 syncTranslationWithStore(store);
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: blue700,
+    lighterPrimary1Color: blue500,
+  },
+});
+
 render(
   <Provider store={store}>
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <Router>
         <Switch>
           <Route path="/login" component={Login} />

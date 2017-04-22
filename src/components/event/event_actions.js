@@ -5,6 +5,9 @@ import {
 import {
   UNAUTHORIZED_STATUS,
   NOT_FOUND_STATUS,
+  EVENT_URL,
+  QUERY_RATING,
+  QUERY_MY_RATING,
 } from '../../constants/constants';
 import {
   SET_EVENT_EVENT,
@@ -60,8 +63,8 @@ export function fetchInitialData(eventId) {
       type: FETCH_INIT_EVENT,
     });
     return Promise.all([
-      get(`api/event/${eventId}`),
-      get(`api/event/rating/${eventId}`)
+      get(`${EVENT_URL}/${eventId}`),
+      get(`${EVENT_URL}${QUERY_RATING}/${eventId}`)
     ])
       .then(([event, { averageRating, voteCount }]) => {
         dispatch(setEvent(event));
@@ -79,7 +82,7 @@ export function fetchMyRating(eventId) {
     dispatch({
       type: FETCH_INIT_EVENT,
     });
-    return get(`api/event/my-rating/${eventId}`)
+    return get(`${EVENT_URL}${QUERY_MY_RATING}/${eventId}`)
       .then((response) => {
         dispatch(setMyRating(response.rating));
         dispatch({
@@ -104,7 +107,7 @@ export function rateEvent(id, rating) {
     dispatch({
       type: FETCH_INIT_EVENT,
     });
-    return post(`api/event/rating/${id}`, { rating })
+    return post(`${EVENT_URL}${QUERY_RATING}/${id}`, { rating })
       .then((response) => {
         dispatch(setMyRating(response.rating));
         dispatch(setAverageRating(response.averageRating, response.voteCount));

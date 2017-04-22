@@ -13,6 +13,8 @@ import {
 } from '../shared/action_types';
 import {
   UNAUTHORIZED_STATUS,
+  EVENT_URL,
+  QUERY_BY_CATEGORY,
 } from '../../constants/constants';
 
 function handleError(dispatch, error) {
@@ -33,12 +35,14 @@ export function setEvents(events) {
   };
 }
 
-export function fetchEvents() {
+export function fetchEvents(categoryId) {
+  const requestUrl = categoryId ? `${EVENT_URL}${QUERY_BY_CATEGORY}/${categoryId}` : EVENT_URL;
+
   return (dispatch) => {
     dispatch({
       type: FETCH_INIT_EVENTS,
     });
-    return get('api/event')
+    return get(requestUrl)
       .then((response) => {
         dispatch(setEvents(response));
         dispatch({

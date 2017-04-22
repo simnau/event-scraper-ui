@@ -8,7 +8,18 @@ import * as actions from './events_actions';
 
 class EventsContainer extends Component {
   componentWillMount() {
-    this.props.fetchEvents();
+    const { match: { params: { categoryId } } } = this.props;
+
+    this.props.fetchEvents(categoryId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { match: { params: { categoryId } } } = this.props;
+    const { match: { params: { categoryId: nextCategoryId } } } = nextProps;
+
+    if (categoryId !== nextCategoryId) {
+      this.props.fetchEvents(nextCategoryId);
+    }
   }
 
   componentWillUnmount() {
@@ -33,6 +44,7 @@ EventsContainer.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

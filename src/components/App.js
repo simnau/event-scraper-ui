@@ -6,41 +6,32 @@ import {
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { Grid } from 'react-flexbox-grid';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import Home from './Home';
 import Event from './event/EventContainer';
 import Events from './event/EventsContainer';
 import NotFoundPage from './NotFoundPage';
-import Navigation from './layout/Navigation';
+import Header from './layout/Header';
 
 function App({
   match,
   location,
   isAuthenticated,
   logout,
-  muiTheme: {
-    palette: {
-      primary1Color,
-    },
-  },
 }) {
   return (
     <div>
-      <div style={{ backgroundColor: primary1Color }}>
-        <Grid>
-          <Navigation
-            location={location}
-            isAuthenticated={isAuthenticated}
-            onLogout={logout}
-          />
-        </Grid>
-      </div>
+      <Header
+        location={location}
+        isAuthenticated={isAuthenticated}
+        onLogout={logout}
+      />
       <div>
         <Grid>
           <Switch>
             <Route exact path={match.url} component={Home} />
-            <Route exact path="/event" component={Events} />
+            <Route exact path="/events" component={Events} />
+            <Route path="/events/:categoryId" component={Events} />
             <Route path="/event/:eventId" component={Event} />
             <Route component={NotFoundPage} />
           </Switch>
@@ -55,7 +46,6 @@ App.propTypes = {
   location: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
-  muiTheme: PropTypes.object.isRequired,
 };
 
-export default withRouter(muiThemeable()(App));
+export default withRouter(App);
