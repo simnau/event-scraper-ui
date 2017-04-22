@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 import Events from './Events';
 import * as actions from './events_actions';
 
 class EventsContainer extends Component {
-  viewEvent(eventId) {
-    this.props.router.push(`/event/${eventId}`);
-  }
-
-  constructor(props) {
-    super(props);
-    this.handleViewEvent = this.viewEvent.bind(this);
-  }
-
   componentWillMount() {
     this.props.fetchEvents();
   }
@@ -22,6 +14,10 @@ class EventsContainer extends Component {
   componentWillUnmount() {
     this.props.clearState();
   }
+
+  handleViewEvent = (eventId) => {
+    this.props.history.push(`/event/${eventId}`);
+  };
 
   render() {
     return (
@@ -32,6 +28,12 @@ class EventsContainer extends Component {
     );
   }
 }
+
+EventsContainer.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

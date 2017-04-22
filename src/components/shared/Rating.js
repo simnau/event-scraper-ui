@@ -1,4 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { yellow800 } from 'material-ui/styles/colors';
 
 import RatingStar from './RatingStar';
@@ -9,25 +11,21 @@ class Rating extends Component {
     this.state = {
       rating: 0,
     };
-
-    this.handleMouseLeave = this.onMouseLeave.bind(this);
-    this.handleMouseMove = this.onMouseMove.bind(this);
-    this.handleRate = this.onRate.bind(this);
   }
 
-  onRate() {
+  handleRate = () => {
     if (this.props.onRate && !this.props.rating) {
       this.props.onRate(this.state.rating);
     }
-  }
+  };
 
-  onMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({
       rating: 0,
     });
-  }
+  };
 
-  onMouseMove(event, index) {
+  handleMouseMove = (event, index) => {
     if (event.target.offsetX < 0) {
       return;
     }
@@ -38,7 +36,7 @@ class Rating extends Component {
     this.setState({
       rating,
     });
-  }
+  };
 
   render() {
     const { starCount, averageRating, voteCount, rating } = this.props;
@@ -80,6 +78,17 @@ class Rating extends Component {
     );
   }
 }
+
+Rating.propTypes = {
+  onRate: PropTypes.func,
+  rating: PropTypes.number,
+  starCount: PropTypes.number.isRequired,
+  averageRating: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  voteCount: PropTypes.number,
+};
 
 Rating.defaultProps = {
   starCount: 5,

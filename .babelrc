@@ -1,34 +1,43 @@
 {
-  "presets": [
-    "react",
-    "es2015",
-    "stage-0"
-  ],
-  "plugins": ["transform-class-properties"],
   "env": {
     "development": {
       "presets": [
-        "latest",
-        "react-hmre"
-      ]
+        "env",
+        "react-hmre",
+        "react",
+        "es2015",
+        "stage-0"
+      ],
+      "plugins": ["transform-class-properties"]
     },
     "production": {
       "presets": [
-        ["latest", {
-          "es2015": {
-            "modules": false
-          }
-        }]
+        [
+          "env",
+          {
+            "es2015": {
+              "modules": false
+            }
+          },
+          "react",
+          "es2015",
+          "stage-0"
+        ]
       ],
       "plugins": [
         "transform-react-constant-elements",
-        "transform-react-remove-prop-types"
+        "transform-react-remove-prop-types",
+        "transform-class-properties"
       ]
     },
     "test": {
       "presets": [
-        "latest"
-      ]
+        "env",
+        "react",
+        "es2015",
+        "stage-0"
+      ],
+      "plugins": ["transform-class-properties"]
     }
   }
 }

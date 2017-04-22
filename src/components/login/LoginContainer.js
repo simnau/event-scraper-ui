@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
@@ -10,26 +11,27 @@ import * as actions from './login_actions';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    this.handleLogin = this.login.bind(this);
+    const { handleSubmit } = this.props;
+    this.boundSubmit = handleSubmit(this.handleLogin);
   }
 
   componentWillMount() {
     if (this.props.isAuthenticated) {
-      this.props.router.push('/');
+      this.props.history.push('/');
     }
   }
 
-  login(user) {
+  handleLogin = (user) => {
     this.props.login(user)
-      .then(() => this.props.router.push('/'))
+      .then(() => this.props.history.push('/'))
       .catch(() => {});
-  }
+  };
 
   render() {
     return (
       <Login
         {...this.props}
-        onSubmitForm={this.handleLogin}
+        onSubmit={this.boundSubmit}
       />
     );
   }
@@ -37,7 +39,8 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
   login: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 

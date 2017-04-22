@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { AppBar, Tabs, Tab } from 'material-ui';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -11,30 +12,29 @@ import FlatButton from 'material-ui/FlatButton';
 const styles = {
   appBar: {
     flexWrap: 'wrap',
+    boxShadow: 'none',
   },
   tabs: {
     width: '100%',
   },
 };
 
-class Login extends Component {
-  render() {
-    return (
-      <FlatButton
-        {...this.props}
-        label="Login"
-        containerElement={<Link to="/login" />}
-      />
-    );
-  }
+function LoginButton(props) {
+  return (
+    <FlatButton
+      {...props}
+      label="Login"
+      containerElement={<Link to="/login" />}
+    />
+  );
 }
 
-Login.muiName = 'FlatButton';
+LoginButton.muiName = 'FlatButton';
 
-const Logged = ({
+function Logged({
   onLogout,
   ...props,
-}) => {
+}) {
   return (
     <IconMenu
       {...props}
@@ -49,28 +49,37 @@ const Logged = ({
       <MenuItem primaryText="Sign out" onClick={onLogout} />
     </IconMenu>
   );
+}
+
+Logged.propTypes = {
+  onLogout: PropTypes.func.isRequired,
 };
 
 Logged.muiName = 'IconMenu';
 
-const Navigation = ({
+function Navigation({
   location,
   isAuthenticated,
   onLogout,
-}) => {
+}) {
   return (
     <AppBar
       style={styles.appBar}
       showMenuIconButton={false}
-      iconElementRight={isAuthenticated ? <Logged onLogout={onLogout} /> : <Login />}
+      iconElementRight={isAuthenticated ? <Logged onLogout={onLogout} /> : <LoginButton />}
     >
       <Tabs style={styles.tabs} value={location.pathname}>
         <Tab label="Home" value="/" containerElement={<Link to="/" />} />
         <Tab label="Events" value="/event" containerElement={<Link to="/event" />} />
-        <Tab label="Test" value="/test" containerElement={<Link to="/test" />} />
       </Tabs>
     </AppBar>
   );
+}
+
+Navigation.propTypes = {
+  location: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
 
 export default Navigation;

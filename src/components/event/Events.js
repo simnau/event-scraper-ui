@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GridList } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
@@ -19,10 +20,10 @@ const styles = {
   },
 };
 
-const Events = ({
+function Events({
   events,
   onViewEvent,
-}) => {
+}) {
   const tilesData = events.map((event) => {
     return {
       id: event._id,
@@ -66,6 +67,11 @@ const Events = ({
       </GridList>
     </div>
   );
+}
+
+Events.propTypes = {
+  events: PropTypes.array.isRequired,
+  onViewEvent: PropTypes.func.isRequired,
 };
 
 export default Events;

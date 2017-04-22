@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridTile } from 'material-ui/GridList';
+import PropTypes from 'prop-types';
 import CustomGridTile from './CustomGridTile';
 
 class ExpandingGridTile extends Component {
@@ -19,13 +19,7 @@ class ExpandingGridTile extends Component {
   }
 
   render() {
-    const { tileOptions, children, hoveredStyle, hoveredTitleStyle } = this.props;
-
-    const style = this.state.hovered
-      ? { ...tileOptions.style, ...hoveredStyle, animation: 'max-height 5s ease' }
-      : { ...tileOptions.style, animation: 'max-height 5s ease' };
-    const titleStyle = this.state.hovered
-      ? { ...tileOptions.titleStyle, ...hoveredTitleStyle } : tileOptions.titleStyle;
+    const { tileOptions, children } = this.props;
 
     return (
       <CustomGridTile
@@ -38,5 +32,10 @@ class ExpandingGridTile extends Component {
     );
   }
 }
+
+ExpandingGridTile.propTypes = {
+  tileOptions: PropTypes.object,
+  children: PropTypes.node,
+};
 
 export default ExpandingGridTile;

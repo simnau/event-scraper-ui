@@ -1,14 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
 
 import Rating from '../shared/Rating';
 
 const styles = {
-  root: {/*
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',*/
+  root: {
+
   },
   row: {
     fontFamily: 'Roboto, sans-serif',
@@ -30,13 +29,13 @@ const styles = {
   }
 };
 
-const Event = ({
+function Event({
   event,
   averageRating,
   voteCount,
   myRating,
   onRate,
-}) => {
+}) {
   return (
     <Paper
       style={styles.root}
@@ -76,6 +75,17 @@ const Event = ({
       )}
     </Paper>
   );
+}
+
+Event.propTypes = {
+  event: PropTypes.object,
+  averageRating: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  voteCount: PropTypes.number,
+  myRating: PropTypes.number,
+  onRate: PropTypes.func,
 };
 
 export default Event;
