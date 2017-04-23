@@ -1,3 +1,3 @@
 export default {
-  apiUrl: 'http://127.0.0.1:8080/'
+  apiUrl: 'https://secret-refuge-73846.herokuapp.com/'
 };
