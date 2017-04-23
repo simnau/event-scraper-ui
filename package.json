@@ -25,7 +25,8 @@
     "test:watch": "npm run test -- --watch",
     "open:cover": "npm run test:cover && open coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js",
-    "prod": "cross-env NODE_ENV=production babel-node tools/build.js && node server.js"
+    "build-prod": "cross-env NODE_ENV=production babel-node tools/build.js",
+    "prod": "cross-env NODE_ENV=production node server.js"
   },
   "author": "Cory House",
   "license": "MIT",
