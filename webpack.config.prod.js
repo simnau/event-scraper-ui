@@ -83,19 +83,19 @@ export default {
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
       {
         test: /\.css$/,
-        loaders: ['style', 'css?modules'],
+        loaders: ['style-loader', 'css-loader?modules'],
         include: /flexboxgrid/,
       },
       {
         test: /(\.css|\.scss)$/,
         include: [path.resolve(__dirname, 'src/styles'), path.resolve('node_modules')],
         exclude: /flexboxgrid/,
-        loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']
+        loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']
       },
       {
         test: /\.css$/,
         exclude: [path.resolve(__dirname, 'src/styles'), path.resolve('node_modules')],
-        loader: `style!css?modules&localIdentName=[local][hash:base64:5]&importLoaders=1`
+        loader: `style-loader!css-loader?modules&localIdentName=[local][hash:base64:5]&importLoaders=1`
       },
     ]
   }
