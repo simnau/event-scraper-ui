@@ -19,7 +19,7 @@ function Login({
     <Grid style={{ paddingTop: 40 }}>
       <Row center="xs">
         <Col xs={4} style={{ minWidth: 350 }}>
-          <Paper zDepth={1} style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 40, paddingTop: 20 }}>
+          <Paper zDepth={1} style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 40, paddingTop: 20, textAlign: 'left' }}>
             {isError && (
               <div style={{ textAlign: 'left', color: 'red' }}>
                 <span>You have entered an invalid username and/or password</span>
