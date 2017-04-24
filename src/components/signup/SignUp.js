@@ -12,21 +12,45 @@ import {
 
 function SignUp({
   onSubmit,
+  isError,
 }) {
   return (
-    <Grid style={{ paddingTop: '40px' }}>
-      <Row>
-        <Col xs={4} style={{ margin: 'auto' }}>
-          <Paper zDepth={1} style={{ paddingLeft: '40px', paddingRight: '40px', paddingBottom: '40px', paddingTop: '20px' }}>
+    <Grid style={{ paddingTop: 40 }}>
+      <Row center="xs">
+        <Col xs={4} style={{ minWidth: 350 }}>
+          <Paper zDepth={1} style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 40, paddingTop: 20 }}>
             <form onSubmit={onSubmit}>
+              {isError && (
+                <div style={{ textAlign: 'left', color: 'red' }}>
+                  <span>There was an error signing up. The email may already be in use</span>
+                </div>
+              )}
               <div>
-                <Field name="email" type="text" component={TextField} floatingLabelText="Email" />
+                <Field
+                  name="email"
+                  type="text"
+                  component={TextField}
+                  floatingLabelText="Email"
+                  fullWidth={true}
+                />
               </div>
               <div>
-                <Field name="password" type="password" component={TextField} floatingLabelText="Password" />
+                <Field
+                  name="password"
+                  type="password"
+                  component={TextField}
+                  floatingLabelText="Password"
+                  fullWidth={true}
+                />
               </div>
               <div>
-                <Field name="repeatPassword" type="password" component={TextField} floatingLabelText="Repeat Password" />
+                <Field
+                  name="repeatPassword"
+                  type="password"
+                  component={TextField}
+                  floatingLabelText="Repeat Password"
+                  fullWidth={true}
+                />
               </div>
               <div style={{ display: 'flex' }}>
                 <FlatButton
@@ -49,6 +73,7 @@ function SignUp({
 
 SignUp.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 export default SignUp;

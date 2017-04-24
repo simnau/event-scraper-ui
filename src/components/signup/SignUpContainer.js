@@ -22,6 +22,7 @@ class SignUpContainer extends Component {
   }
 
   signUp = (user) => {
+    this.props.clearError();
     this.props.signUp(user)
       .then(() => this.props.history.push('/login'))
       .catch(() => {});
@@ -40,6 +41,7 @@ class SignUpContainer extends Component {
 SignUpContainer.propTypes = {
   signUp: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
@@ -77,6 +79,7 @@ const SignUpForm = reduxForm(
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    isError: state.signup.isError,
   };
 }
 

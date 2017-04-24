@@ -22,6 +22,7 @@ class LoginContainer extends Component {
   }
 
   handleLogin = (user) => {
+    this.props.clearError();
     this.props.login(user)
       .then(() => this.props.history.push('/'))
       .catch(() => {});
@@ -40,6 +41,7 @@ class LoginContainer extends Component {
 LoginContainer.propTypes = {
   login: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
@@ -67,6 +69,7 @@ const LoginForm = reduxForm(
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    isError: state.authentication.isError,
   };
 }
 

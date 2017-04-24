@@ -3,6 +3,7 @@ import {
   FETCH_SUCCESS_SIGNUP,
   FETCH_FAILURE_SIGNUP,
   CLEAR_STATE_SIGNUP,
+  CLEAR_ERROR_SIGNUP,
 } from './action_types';
 
 const INITIAL_STATE = {
@@ -20,6 +21,8 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, isError: false, isLoading: false, };
     case CLEAR_STATE_SIGNUP:
       return INITIAL_STATE;
+    case CLEAR_ERROR_SIGNUP:
+      return { ...state, isError: false, };
     default:
       return state;
   }
