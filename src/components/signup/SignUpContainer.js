@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { I18n } from 'react-redux-i18n';
 
 import SignUp from './SignUp';
@@ -21,7 +21,17 @@ class SignUpContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearState();
+  }
+
+  handleCancel = () => {
+    this.props.clearError();
+    this.props.history.push('/login');
+  };
+
   signUp = (user) => {
+    this.props.clearError();
     this.props.signUp(user)
       .then(() => this.props.history.push('/login'))
       .catch(() => {});
@@ -32,6 +42,7 @@ class SignUpContainer extends Component {
       <SignUp
         {...this.props}
         onSubmit={this.boundSubmit}
+        onCancel={this.handleCancel}
       />
     );
   }
@@ -40,6 +51,8 @@ class SignUpContainer extends Component {
 SignUpContainer.propTypes = {
   signUp: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
@@ -77,6 +90,7 @@ const SignUpForm = reduxForm(
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    isError: state.signup.isError,
   };
 }
 

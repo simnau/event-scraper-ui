@@ -4,6 +4,7 @@ import {
   FETCH_INIT_AUTHENTICATION,
   FETCH_SUCCESS_AUTHENTICATION,
   FETCH_FAILURE_AUTHENTICATION,
+  CLEAR_ERROR_AUTHENTICATION,
   CHECK_TOKEN,
 } from './action_types';
 import {
@@ -48,6 +49,8 @@ export default function (state = initialState, action) {
       return { ...state, isError: true, isLoading: false, };
     case FETCH_SUCCESS_AUTHENTICATION:
       return { ...state, isError: false, isLoading: false, };
+    case CLEAR_ERROR_AUTHENTICATION:
+      return { ...state, isError: false, };
     case UNAUTHORIZED: {
       localStorage.removeItem(TOKEN);
       return initialState;

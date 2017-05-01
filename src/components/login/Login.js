@@ -12,21 +12,39 @@ import {
 } from 'redux-form-material-ui';
 
 function Login({
-  onSubmit
+  onSubmit,
+  isError,
 }) {
   return (
-    <Grid style={{ paddingTop: '40px' }}>
-      <Row>
-        <Col xs={4} style={{ margin: 'auto' }}>
-          <Paper zDepth={1} style={{ paddingLeft: '40px', paddingRight: '40px', paddingBottom: '40px', paddingTop: '20px' }}>
+    <Grid style={{ paddingTop: 40 }}>
+      <Row center="xs">
+        <Col xs={4} style={{ minWidth: 350 }}>
+          <Paper zDepth={1} style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 40, paddingTop: 20, textAlign: 'left' }}>
+            {isError && (
+              <div style={{ textAlign: 'left', color: 'red' }}>
+                <span>You have entered an invalid username and/or password</span>
+              </div>
+            )}
             <form onSubmit={onSubmit}>
               <div>
-                <Field name="email" type="text" component={TextField} floatingLabelText="Email" />
+                <Field
+                  name="email"
+                  type="text"
+                  component={TextField}
+                  floatingLabelText="Email"
+                  fullWidth={true}
+                />
               </div>
               <div>
-                <Field name="password" type="password" component={TextField} floatingLabelText="Password" />
+                <Field
+                  name="password"
+                  type="password"
+                  component={TextField}
+                  floatingLabelText="Password"
+                  fullWidth={true}
+                />
               </div>
-              <div style={{ marginBottom: '20px' }}>
+              <div style={{ marginBottom: 20, textAlign: 'left' }}>
                 <Field name="rememberMe" component={Checkbox} label="Remember?" />
               </div>
               <div style={{ display: 'flex' }}>
@@ -54,6 +72,7 @@ function Login({
 
 Login.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 export default Login;

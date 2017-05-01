@@ -9,6 +9,7 @@ import {
   FETCH_SUCCESS_SIGNUP,
   FETCH_FAILURE_SIGNUP,
   CLEAR_STATE_SIGNUP,
+  CLEAR_ERROR_SIGNUP,
 } from './action_types';
 import {
   UNAUTHORIZED,
@@ -40,5 +41,11 @@ export function signUp(userForm) {
 export function clearState() {
   return {
     type: CLEAR_STATE_SIGNUP,
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR_SIGNUP,
   };
 }

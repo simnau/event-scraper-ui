@@ -12,6 +12,7 @@ import {
   FETCH_INIT_AUTHENTICATION,
   FETCH_SUCCESS_AUTHENTICATION,
   FETCH_FAILURE_AUTHENTICATION,
+  CLEAR_ERROR_AUTHENTICATION,
 } from './action_types';
 import {
   UNAUTHORIZED,
@@ -64,5 +65,11 @@ export function checkToken() {
     }
 
     return token;
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR_AUTHENTICATION,
   };
 }
