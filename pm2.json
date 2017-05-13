@@ -1,8 +1,9 @@
 {
-  "apps" : [{
-    "name"        : "uiserver",
-    "script"      : "./server.js",
-    "watch"       : true,
+  "apps": [{
+    "name": "uiserver",
+    "script": "npm",
+    "args": "run prod",
+    "watch": true,
     "env": {
       "NODE_ENV": "production"
     }
