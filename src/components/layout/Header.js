@@ -46,7 +46,7 @@ function Header({
           <Row style={{ margin: 0 }}>
             <Col sm={4}>
               <span style={{ fontWeight: 'bold', fontSize: 42, color: alternateTextColor }}>
-                Event Portal v1
+                Event Portal
               </span>
             </Col>
             <Col sm={4} style={{ paddingLeft: 0, paddingRight: 0, }}>
