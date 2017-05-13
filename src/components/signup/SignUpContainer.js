@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { I18n } from 'react-redux-i18n';
 
 import SignUp from './SignUp';
-import * as actions from './signup_actions';
+import * as actions from './signup-actions';
 
 class SignUpContainer extends Component {
   constructor(props) {

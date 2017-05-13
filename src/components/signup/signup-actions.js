@@ -10,10 +10,10 @@ import {
   FETCH_FAILURE_SIGNUP,
   CLEAR_STATE_SIGNUP,
   CLEAR_ERROR_SIGNUP,
-} from './action_types';
+} from './signup-action-types';
 import {
   UNAUTHORIZED,
-} from '../shared/action_types';
+} from '../shared/action-types';
 
 function handleError(dispatch, error) {
   if (error.status === UNAUTHORIZED_STATUS) {

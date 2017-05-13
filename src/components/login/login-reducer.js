@@ -6,10 +6,10 @@ import {
   FETCH_FAILURE_AUTHENTICATION,
   CLEAR_ERROR_AUTHENTICATION,
   CHECK_TOKEN,
-} from './action_types';
+} from './login-action-types';
 import {
   UNAUTHORIZED,
-} from '../shared/action_types';
+} from '../shared/action-types';
 import {
   TOKEN,
 } from '../../constants/constants';

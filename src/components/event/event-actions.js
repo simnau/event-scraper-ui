@@ -17,10 +17,10 @@ import {
   FETCH_INIT_EVENT,
   FETCH_SUCCESS_EVENT,
   FETCH_FAILURE_EVENT,
-} from './action_types';
+} from './event-action-types';
 import {
   UNAUTHORIZED,
-} from '../shared/action_types';
+} from '../shared/action-types';
 
 function handleError(dispatch, error) {
   if (error.status === UNAUTHORIZED_STATUS) {

@@ -9,7 +9,7 @@ import {
 import { loadTranslations, setLocale, syncTranslationWithStore } from 'react-redux-i18n';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { blue700, blue500 } from 'material-ui/styles/colors';
+import { blue700, blue500, purpleA700 } from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Login from './components/login/LoginContainer';
@@ -17,7 +17,7 @@ import SignUp from './components/signup/SignUpContainer';
 import App from './components/AppContainer';
 
 import configureStore from './store/configureStore';
-import { checkToken } from './components/login/login_actions';
+import { checkToken } from './components/login/login-actions';
 import en from './localization/messages-en';
 import './styles/styles.scss';
 
@@ -36,6 +36,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: blue700,
     lighterPrimary1Color: blue500,
+    accent1Color: purpleA700,
   },
 });
 

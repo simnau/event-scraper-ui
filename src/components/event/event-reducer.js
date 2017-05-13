@@ -6,7 +6,7 @@ import {
   FETCH_INIT_EVENT,
   FETCH_SUCCESS_EVENT,
   FETCH_FAILURE_EVENT,
-} from './action_types';
+} from './event-action-types';
 
 const INITIAL_STATE = {
   event: null,

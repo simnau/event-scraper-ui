@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { I18n } from 'react-redux-i18n';
 
 import Login from './Login';
-import * as actions from './login_actions';
+import * as actions from './login-actions';
 
 class LoginContainer extends Component {
   constructor(props) {

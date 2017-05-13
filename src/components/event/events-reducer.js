@@ -4,7 +4,7 @@ import {
   FETCH_INIT_EVENTS,
   FETCH_SUCCESS_EVENTS,
   FETCH_FAILURE_EVENTS,
-} from './action_types';
+} from './event-action-types';
 
 const INITIAL_STATE = {
   events: [],

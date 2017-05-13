@@ -4,7 +4,7 @@ import {
   FETCH_FAILURE_SIGNUP,
   CLEAR_STATE_SIGNUP,
   CLEAR_ERROR_SIGNUP,
-} from './action_types';
+} from './signup-action-types';
 
 const INITIAL_STATE = {
   isError: false,

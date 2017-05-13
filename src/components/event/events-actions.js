@@ -7,10 +7,10 @@ import {
   FETCH_INIT_EVENTS,
   FETCH_SUCCESS_EVENTS,
   FETCH_FAILURE_EVENTS,
-} from './action_types';
+} from './event-action-types';
 import {
   UNAUTHORIZED,
-} from '../shared/action_types';
+} from '../shared/action-types';
 import {
   UNAUTHORIZED_STATUS,
   EVENT_URL,

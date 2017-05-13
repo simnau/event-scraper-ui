@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import Event from './Event';
-import * as actions from './event_actions';
+import * as actions from './event-actions';
 
 class EventContainer extends Component {
   componentWillMount() {

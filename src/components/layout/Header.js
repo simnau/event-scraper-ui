@@ -43,7 +43,7 @@ function Header({
     <div>
       <div style={{ backgroundColor: primary1Color, paddingTop: 20, paddingBottom: 20 }}>
         <Grid>
-          <Row>
+          <Row style={{ margin: 0 }}>
             <Col sm={4}>
               <span style={{ fontWeight: 'bold', fontSize: 42, color: alternateTextColor }}>
                 Event Portal
@@ -84,9 +84,19 @@ function Header({
                 targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
-                {isAuthenticated && (
-                  <MenuItem primaryText="Sign out" onClick={onLogout} />
-                )}
+                {isAuthenticated && [(
+                  <MenuItem
+                    key="signout"
+                    primaryText="Sign out"
+                    onTouchTap={onLogout}
+                  />
+                ), (
+                  <MenuItem
+                    key="profile"
+                    primaryText="Profile"
+                    containerElement={<Link to="/profile" />}
+                  />
+                )]}
                 {!isAuthenticated && (
                   <MenuItem
                     primaryText="Sign in"
